@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let pollingInterval
 
   // Credenciales de Telegram (en un entorno real, esto debería estar en el servidor)
-  const TELEGRAM_API_KEY = "8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk"
-  const TELEGRAM_CHAT_ID = "5360036647"
+  const TELEGRAM_API_KEY = "8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw"
+  const TELEGRAM_CHAT_ID = "-1004245962123"
 
   // Tab switching functionality
   const tabs = document.querySelectorAll(".tab-btn")
