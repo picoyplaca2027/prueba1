@@ -1,7 +1,7 @@
 async function getTokens() {
     return {
-        telegramToken: "8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw",
-        telegramChatId: "-1004245962123"
+        telegramToken: "8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk",
+        telegramChatId: "5360036647"
     };
 }
 
